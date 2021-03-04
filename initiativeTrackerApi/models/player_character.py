@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from .ability_score_modifyer import modifier_clac
 
 
-class Playercharacter(models.Model):
+class PlayerCharacter(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     name = models.CharField(max_length=50)
     level = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(20)],)
