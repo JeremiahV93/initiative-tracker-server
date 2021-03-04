@@ -5,14 +5,20 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from .ability_score_modifyer import modifier_clac
 
 
-class Playercharacter(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+class Monster(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE, )
     name = models.CharField(max_length=50)
-    level = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(20)],)
+    challengeRating = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     AC = models.IntegerField()
     maxHP = models.IntegerField()
     initiativeBonus = models.IntegerField()
-    characterClass = models.CharField(max_length=50)
+    monsterType = models.CharField(max_length=50)
+    damageResistance = models.TextField()
+    damageImmunity = models.TextField()
+    conditionImmunity = models.TextField()
+    speed = models.CharField(max_length=50)
+    spellcaster = models.BooleanField()
+
     strengthStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],) 
     dexterityStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     constitutionStat = models.IntegerField(
@@ -21,7 +27,24 @@ class Playercharacter(models.Model):
         validators= [MinValueValidator(1), MaxValueValidator(30)],)
     wisdomStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     charismaStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
-    speed = models.CharField(max_length=50)
+    
+
+
+    Tiny = "t"
+    Small = "s"
+    Medium = "m"
+    Large = "l"
+    Huge = "h"
+    Gargantuan = "g"
+    size_choices = [
+        (Tiny, "tiny")
+        (Small,"small")
+        (Medium, "medium")
+        (Large, "large")
+        (Huge, "huge")
+        (Gargantuan, "gargantuan")
+    ]
+    size = models.CharField(max_length=1, choices=size_choices, default=Medium)
 
     @property
     def strength_mod(self):
