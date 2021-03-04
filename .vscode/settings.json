@@ -1,3 +1,11 @@
 {
-    "python.pythonPath": "/home/jvasquez/.local/share/virtualenvs/initiative_tracker_server-JliOS_uX/bin/python"
+    "python.pythonPath": "/home/jvasquez/.local/share/virtualenvs/initiative_tracker_server-JliOS_uX/bin/python",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Database",
+            "database": "db.sqlite3"
+        }
+    ]
 }

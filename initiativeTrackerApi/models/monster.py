@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.deletion import CASCADE
 from django.core.validators import MaxValueValidator, MinValueValidator
-from .ability_score_modifyer import modifier_clac
+from .ability_score_modifier import modifier_clac
 
 
 class Monster(models.Model):
@@ -27,24 +27,20 @@ class Monster(models.Model):
         validators= [MinValueValidator(1), MaxValueValidator(30)],)
     wisdomStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     charismaStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
-    
 
+    class Meta:
+        verbose_name = ("monster")
+        verbose_name_plural = ("monsters")
 
-    Tiny = "t"
-    Small = "s"
-    Medium = "m"
-    Large = "l"
-    Huge = "h"
-    Gargantuan = "g"
-    size_choices = [
-        (Tiny, "tiny")
-        (Small,"small")
-        (Medium, "medium")
-        (Large, "large")
-        (Huge, "huge")
-        (Gargantuan, "gargantuan")
-    ]
-    size = models.CharField(max_length=1, choices=size_choices, default=Medium)
+    SIZE_CHOICES = ( 
+        ("T", "tiny"),
+        ("S", "small"),
+        ("M", "medium"),
+        ("L", "large"),
+        ("H", "huge"),
+        ("G", "gargantuan"),
+    )
+    size = models.CharField(max_length=1, choices=SIZE_CHOICES, default='M')
 
     @property
     def strength_mod(self):

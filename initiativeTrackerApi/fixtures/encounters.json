@@ -1,0 +1,11 @@
+[
+    {
+        "model": "initiativeTrackerApi.encounter",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Battle of Emerald Hill",
+            "roomcode": "ABCD"
+        }
+    }
+]

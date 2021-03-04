@@ -1,0 +1,20 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$KFNGbGWEJCiw$cBf9NsXw96zzubxnJEAYpCOipJztkplVzK9vYXGmKAo=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "Jmoney",
+            "first_name": "Jeremiah",
+            "last_name": "Vasquez",
+            "email": "j_d_v93@hotmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-03-04 02:05:13.211197",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
