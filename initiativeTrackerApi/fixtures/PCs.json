@@ -1,0 +1,62 @@
+[
+    {
+        "model": "initiativeTrackerApi.playerCharacter",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Bruenor Battlehammer",
+            "level": 5,
+            "AC": 18,
+            "maxHP": 43,
+            "initiativeBonus": 0,
+            "strengthStat": 18,
+            "dexterityStat": 8,
+            "constitutionStat": 17,
+            "intelligenceStat": 9,
+            "wisdomStat": 13,
+            "charismaStat": 11,
+            "speed": "30 ft walking",
+            "characterClass": "fig"
+        }
+    },
+    {
+        "model": "initiativeTrackerApi.playerCharacter",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "name": "Drizzt Do'Urden",
+            "level": 7,
+            "AC": 16,
+            "maxHP": 57,
+            "initiativeBonus": 5,
+            "strengthStat": 12,
+            "dexterityStat": 20,
+            "constitutionStat": 13,
+            "intelligenceStat": 11,
+            "wisdomStat": 16,
+            "charismaStat": 11,
+            "speed": "35 ft walking",
+            "characterClass": "ran"
+        }
+    },
+    {
+        "model": "initiativeTrackerApi.playerCharacter",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "name": "Fernando Rodgriguz",
+            "level": 11,
+            "AC": 15,
+            "maxHP": 63,
+            "initiativeBonus": 5,
+            "strengthStat": 11,
+            "dexterityStat": 14,
+            "constitutionStat": 14,
+            "intelligenceStat": 12,
+            "wisdomStat": 12,
+            "charismaStat": 18,
+            "speed": "30 ft walking",
+            "characterClass": "sor"
+        }
+    }
+]

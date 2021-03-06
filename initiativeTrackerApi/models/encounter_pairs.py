@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.deletion import CASCADE
 from .monster import Monster
-from .player_character import PlayerCharacter
+from .playerCharacter import PlayerCharacter
 
 class Encounterpair(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
