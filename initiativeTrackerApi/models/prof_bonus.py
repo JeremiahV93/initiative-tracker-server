@@ -1,4 +1,4 @@
-def saving_throw(level):
+def prof_bonus(level):
     # need to somehow add together character class prof bonus to certain saving throws
     prof_bonus = None
  
