@@ -6,20 +6,20 @@ from .ability_score_modifier import modifier_clac
 
 
 class Monster(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE, )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE, )
     name = models.CharField(max_length=50)
     challengeRating = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     AC = models.IntegerField()
     maxHP = models.IntegerField()
     initiativeBonus = models.IntegerField()
     monsterType = models.CharField(max_length=50)
-    damageResistance = models.TextField()
-    damageImmunity = models.TextField()
-    conditionImmunity = models.TextField()
+    damageResistance = models.TextField(default="none")
+    damageImmunity = models.TextField(default="none")
+    conditionImmunity = models.TextField(default="none")
     speed = models.CharField(max_length=50)
-    spellcaster = models.BooleanField()
+    spellcaster = models.BooleanField(default=False)
 
-    strengthStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],) 
+    strengthStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     dexterityStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     constitutionStat = models.IntegerField(
         validators= [MinValueValidator(1), MaxValueValidator(30)],)
@@ -27,6 +27,13 @@ class Monster(models.Model):
         validators= [MinValueValidator(1), MaxValueValidator(30)],)
     wisdomStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
     charismaStat = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(30)],)
+
+    strength_savingthrow = models.IntegerField(default=0)
+    dexterity_savingthrow = models.IntegerField(default=0)
+    constitution_savingthrow = models.IntegerField(default=0)
+    intelligence_savingthrow = models.IntegerField(default=0)
+    wisdom_savingthrow = models.IntegerField(default=0)
+    charisma_savingthrow = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = ("monster")
