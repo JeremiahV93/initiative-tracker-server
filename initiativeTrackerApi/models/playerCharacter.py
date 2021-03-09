@@ -77,54 +77,54 @@ class PlayerCharacter(models.Model):
 
     @property
     def strength_ST(self):
-        strength_ST = None
+        strength_st = None
         if self.characterClass in ['bab', 'fig', 'mon', 'rag']:
-            strength_ST = prof_bonus(self.level)  + self.strength_mod()
+            strength_st = prof_bonus(self.level)  + self.strength_mod()
         else:
-            strength_ST = self.strength_mod()
-        return strength_ST
+            strength_st = self.strength_mod()
+        return strength_st
 
     @property
     def dexterity_ST(self):
-        dexterity_ST = None
+        dexterity_st = None
         if self.characterClass in ['bad', 'rog', 'mon', 'ran']:
-            dexterity_ST = prof_bonus(self.level)  + self.dexterity_mod()
+            dexterity_st = prof_bonus(self.level)  + self.dexterity_mod()
         else:
-            dexterity_ST = self.dexterity_mod()
-        return dexterity_ST
+            dexterity_st = self.dexterity_mod()
+        return dexterity_st
 
     @property
     def constitution_ST(self):
-        constitution_ST = None
+        constitution_st = None
         if self.characterClass in ['bab', 'fig', 'sor']:
-            constitution_ST = prof_bonus(self.level)  + self.constitution_mod()
+            constitution_st = prof_bonus(self.level)  + self.constitution_mod()
         else:
-            constitution_ST = self.constitution_mod()
-        return constitution_ST
+            constitution_st = self.constitution_mod()
+        return constitution_st
 
     @property
     def intelligence_ST(self):
-        intelligence_ST = None
+        intelligence_st = None
         if self.characterClass in ['dru', 'rog', 'wiz']:
-            intelligence_ST = prof_bonus(self.level)  + self.intelligence_mod()
+            intelligence_st = prof_bonus(self.level)  + self.intelligence_mod()
         else:
-            intelligence_ST = self.intelligence_mod()
-        return intelligence_ST
+            intelligence_st = self.intelligence_mod()
+        return intelligence_st
 
     @property
     def wisdom_ST(self):
-        wisdom_ST = None
+        wisdom_st = None
         if self.characterClass in ['cle', 'dru', 'pal']:
-            wisdom_ST = prof_bonus(self.level)  + self.wisdom_mod()
+            wisdom_st = prof_bonus(self.level)  + self.wisdom_mod()
         else:
-            wisdom_ST = self.wisdom_mod()
-        return wisdom_ST
+            wisdom_st = self.wisdom_mod()
+        return wisdom_st
 
     @property
     def charisma_ST(self):
-        charisma_ST = None
+        charisma_st = None
         if self.characterClass in ['bad', 'cle', 'pal', 'sor', 'war']:
-            charisma_ST = prof_bonus(self.level)  + self.charisma_mod()
+            charisma_st = prof_bonus(self.level)  + self.charisma_mod()
         else:
-            charisma_ST = self.charisma_mod()
-        return charisma_ST
+            charisma_st = self.charisma_mod()
+        return charisma_st

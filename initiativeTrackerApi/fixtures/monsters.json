@@ -1,0 +1,73 @@
+[
+    {
+        "model": "initiativeTrackerApi.monster",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Werewolf",
+            "challengeRating": 3,
+            "AC": 12,
+            "maxHP": 58,
+            "initiativeBonus": 0,
+            "monsterType": "humanoid",
+            "damageImmunity": "bludeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons",
+            "strengthStat": 15,
+            "dexterityStat": 13,
+            "constitutionStat": 12,
+            "intelligenceStat": 10,
+            "wisdomStat": 11,
+            "charismaStat": 10,
+            "speed": "30 ft.",
+            "size": "M"
+        }  
+    },
+    {
+        "model": "initiativeTrackerApi.monster",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "name": "Ghoul",
+            "challengeRating": 1,
+            "AC": 12,
+            "maxHP": 22,
+            "initiativeBonus": 0,
+            "monsterType": "undead",
+            "damageImmunity": "poison",
+            "conditionImmunity": "Charmed, Exhaustion, poisoned",
+            "strengthStat": 13,
+            "dexterityStat": 15,
+            "constitutionStat": 10,
+            "intelligenceStat": 7,
+            "wisdomStat": 10,
+            "charismaStat": 6,
+            "speed": "30 ft.",
+            "size": "M"
+        }  
+    },
+    {
+        "model": "initiativeTrackerApi.monster",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "name": "Planetar",
+            "challengeRating": 16,
+            "AC": 19,
+            "maxHP": 200,
+            "initiativeBonus": 0,
+            "monsterType": "celestial",
+            "damageResistance": "radiant; bludgeoning, piercing, and slashing from nonmagical attacks",
+            "conditionImmunity": "Charmed, Exhaustion, Frightened",
+            "strengthStat": 24,
+            "dexterityStat": 20,
+            "constitutionStat": 24,
+            "intelligenceStat": 19,
+            "wisdomStat": 22,
+            "charismaStat": 25,
+            "speed": "40 ft., 120 ft. flying",
+            "size": "L",
+            "constitution_savingthrow": 12,
+            "wisdom_savingthrow": 11,
+            "charisma_savingthrow": 12 
+        }  
+    }
+]
