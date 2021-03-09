@@ -1,0 +1,11 @@
+[
+    {
+        "model": "initiativeTrackerApi.Monsterencounterpair",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "monsterId": 1,
+            "initiative": 12
+        }
+    }
+]

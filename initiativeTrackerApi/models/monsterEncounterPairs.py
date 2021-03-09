@@ -1,12 +1,12 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.deletion import CASCADE
-from .playerCharacter import PlayerCharacter
+from .monster import Monster
 
-class Encounterpair(models.Model):
+class Monsterencounterpair(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
-    characterId = models.ForeignKey(PlayerCharacter, on_delete=models.CASCADE)
+    monsterId = models.ForeignKey(Monster, on_delete=models.CASCADE)
     initiative = models.IntegerField()
-    currentHealth = models.IntegerField()
+    currentHealth = models.IntegerField(null=True)
     concentration = models.BooleanField(default=False)
-    temporaryHealth = models.IntegerField()
+    temporaryHealth = models.IntegerField(default=0)

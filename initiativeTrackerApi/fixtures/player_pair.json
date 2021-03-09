@@ -1,0 +1,11 @@
+[
+    {
+        "model": "initiativeTrackerApi.Playerencounterpair",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "characterId": 1,
+            "initiative": 12
+        }
+    }
+]
