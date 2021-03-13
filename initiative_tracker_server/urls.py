@@ -2,8 +2,12 @@
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from rest_framework import router
+from rest_framework import routers
 from initiativeTrackerApi.views import login_user, register_user
+from initiativeTrackerApi.views import Encounters
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'encounters', Encounters, 'encounter')
 
 urlpatterns = [
     path('', include(router.urls)),

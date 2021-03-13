@@ -1,5 +1,5 @@
 # from django.contrib.auth.models import User
-# from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError
 # from django.http import HttpResponseServerError
 from rest_framework import status
 # from rest_framework.decorators import action
@@ -7,6 +7,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from initiativeTrackerApi.models import Encounter
+import string
+import random
 
 class EncounterSerealizer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +47,17 @@ class Encounters(ViewSet):
         encounter.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
+    def create(self, request):
+        encounter = Encounter()
+        encounter.name = request.data["name"]
+        encounter.roomcode = ''.join(random.choices(string.ascii_uppercase, k=4))
+        encounter.user = request.auth.user
+
+        try:
+            encounter.save()
+            serializer = EncounterSerealizer(encounter, context= {'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
