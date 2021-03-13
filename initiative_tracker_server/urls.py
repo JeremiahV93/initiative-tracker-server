@@ -4,10 +4,12 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from initiativeTrackerApi.views import login_user, register_user
-from initiativeTrackerApi.views import Encounters
+from initiativeTrackerApi.views import Encounters, PlayerCharacterView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'encounters', Encounters, 'encounter')
+router.register(r'players', PlayerCharacterView, 'player')
+
 
 urlpatterns = [
     path('', include(router.urls)),
