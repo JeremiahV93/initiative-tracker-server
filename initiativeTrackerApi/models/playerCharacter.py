@@ -25,20 +25,20 @@ class PlayerCharacter(models.Model):
     alive = models.BooleanField(default=True)
 
     class_choices = (
-        ('bab', 'Barbarian'),
-        ('bad', 'Bard'),
-        ('cle', 'Cleric'),
-        ('dru', 'Druid'),
-        ('fig', 'Fighter'),
-        ('mon', 'Monk'),
-        ('pal', 'Paladin'),
-        ('ran', 'Ranger'),
-        ('rog', 'Rogue'),
-        ('sor', 'Sorcerer'),
-        ('war', 'Warlock'),
-        ('wiz', 'Wizard'),
+        ('Barbarian', 'Barbarian'),
+        ('Bard', 'Bard'),
+        ('Cleric', 'Cleric'),
+        ('Druid', 'Druid'),
+        ('Fighter', 'Fighter'),
+        ('Monk', 'Monk'),
+        ('Paladin', 'Paladin'),
+        ('Ranger', 'Ranger'),
+        ('Rogue', 'Rogue'),
+        ('Sorcerer', 'Sorcerer'),
+        ('Warlock', 'Warlock'),
+        ('Wizard', 'Wizard'),
     )
-    characterClass = models.CharField(max_length=3, choices=class_choices, default=None)
+    characterClass = models.CharField(max_length=9, choices=class_choices, default=None)
 
 
     class Meta:
@@ -75,56 +75,55 @@ class PlayerCharacter(models.Model):
         cha_st = modifier_clac(self.charismaStat)
         return cha_st
 
-    @property
     def strength_ST(self):
         strength_st = None
-        if self.characterClass in ['bab', 'fig', 'mon', 'rag']:
-            strength_st = prof_bonus(self.level)  + self.strength_mod()
+        if self.characterClass in ['Barbarian', 'Fighter', 'Monk', 'Ranger']:
+            strength_st = prof_bonus(self.level)  + self.strength_mod
         else:
-            strength_st = self.strength_mod()
+            strength_st = self.strength_mod
         return strength_st
 
     @property
     def dexterity_ST(self):
         dexterity_st = None
-        if self.characterClass in ['bad', 'rog', 'mon', 'ran']:
-            dexterity_st = prof_bonus(self.level)  + self.dexterity_mod()
+        if self.characterClass in ['Bard', 'Rogue', 'Monk', 'Ranger']:
+            dexterity_st = prof_bonus(self.level)  + self.dexterity_mod
         else:
-            dexterity_st = self.dexterity_mod()
+            dexterity_st = self.dexterity_mod
         return dexterity_st
 
     @property
     def constitution_ST(self):
         constitution_st = None
-        if self.characterClass in ['bab', 'fig', 'sor']:
-            constitution_st = prof_bonus(self.level)  + self.constitution_mod()
+        if self.characterClass in ['Barbarian', 'Fighter', 'Sorcerer']:
+            constitution_st = prof_bonus(self.level)  + self.constitution_mod
         else:
-            constitution_st = self.constitution_mod()
+            constitution_st = self.constitution_mod
         return constitution_st
 
     @property
     def intelligence_ST(self):
         intelligence_st = None
-        if self.characterClass in ['dru', 'rog', 'wiz']:
-            intelligence_st = prof_bonus(self.level)  + self.intelligence_mod()
+        if self.characterClass in ['Druid', 'Rogue', 'Wizard']:
+            intelligence_st = prof_bonus(self.level)  + self.intelligence_mod
         else:
-            intelligence_st = self.intelligence_mod()
+            intelligence_st = self.intelligence_mod
         return intelligence_st
 
     @property
     def wisdom_ST(self):
         wisdom_st = None
-        if self.characterClass in ['cle', 'dru', 'pal']:
-            wisdom_st = prof_bonus(self.level)  + self.wisdom_mod()
+        if self.characterClass in ['Cleric', 'Druid', 'Paladin', 'Warlock', 'Wizard']:
+            wisdom_st = prof_bonus(self.level)  + self.wisdom_mod
         else:
-            wisdom_st = self.wisdom_mod()
+            wisdom_st = self.wisdom_mod
         return wisdom_st
 
     @property
     def charisma_ST(self):
         charisma_st = None
-        if self.characterClass in ['bad', 'cle', 'pal', 'sor', 'war']:
-            charisma_st = prof_bonus(self.level)  + self.charisma_mod()
+        if self.characterClass in ['Bard', 'Cleric', 'Paladin', 'Sorcerer', 'Warlock']:
+            charisma_st = prof_bonus(self.level)  + self.charisma_mod
         else:
-            charisma_st = self.charisma_mod()
+            charisma_st = self.charisma_mod
         return charisma_st

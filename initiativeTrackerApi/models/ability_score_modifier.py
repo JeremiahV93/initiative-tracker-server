@@ -1,5 +1,5 @@
-def modifier_clac(self):
-    num = self
-    modifier = round((num-10)/2)
+def modifier_clac(stat):
+    num = stat
+    modifier = int((num - 10) / 2)
 
     return modifier
