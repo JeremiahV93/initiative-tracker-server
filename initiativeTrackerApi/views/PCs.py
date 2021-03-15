@@ -1,8 +1,5 @@
-# from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-# from django.http import HttpResponseServerError
 from rest_framework import status
-# from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -39,6 +36,9 @@ class PlayerCharacterView(ViewSet):
     def destroy(self, request, pk=None):
         try:
             player = PlayerCharacter.objects.get(pk=pk)
+
+            if player.user != request.auth.user:
+                return Response({}, status=status.HTTP_401_UNAUTHORIZED)
             player.delete()
 
             return Response({}, status=status.HTTP_404_NOT_FOUND)
