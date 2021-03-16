@@ -5,7 +5,8 @@
         "fields": {
             "user": 1,
             "monsterId": 1,
-            "initiative": 12
+            "initiative": 12,
+            "encounterId": 1
         }
     }
 ]
