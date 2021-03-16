@@ -25,13 +25,17 @@ class MonsterView(ViewSet):
     def list(self, request):
         monsters = Monster.objects.all()
 
-        challengeRating = self.request.query_params.get('challengeRating', None)
-        monsterType = self.request.query_params.get('monsterType', None)
+        challenge_rating = self.request.query_params.get('challengeRating', None)
+        monster_type = self.request.query_params.get('monsterType', None)
+        active_user = self.request.query_params.get('activeUser', None)
 
-        if challengeRating is not None:
-            monsters = monsters.filter(challengeRating=challengeRating)
-        if monsterType is not None:
-            monsters = monsters.filter(monsterType=monsterType)
+        if challenge_rating is not None:
+            monsters = monsters.filter(challengeRating=challenge_rating)
+        if monster_type is not None:
+            monsters = monsters.filter(monsterType=monster_type)
+        if active_user is not None:
+            monsters = monsters.filter(user=active_user)
+        
 
         json_data = MonsterSerialzer(monsters, many=True, context={'request': request})
 
