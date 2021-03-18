@@ -13,13 +13,19 @@ import random
 class EncounterSerealizer(serializers.ModelSerializer):
     class Meta:
         model = Encounter
-        fields = ('id', 'name', 'roomcode')
+        fields = ('id', 'name', 'roomcode', 'archive')
 
 class Encounters(ViewSet):
 
 # get all active encounters
     def list(self, request):
-        encounters = Encounter.objects.get(user=request.auth.user, archive=False)
+        encounters = Encounter.objects.all().filter(user=request.auth.user, archive=False)
+
+        archive = self.request.query_params.get('archive', None)
+
+        if archive is not None:
+            encounters = encounters.filter(archive=archive)
+
         json_data = EncounterSerealizer(encounters, many=True, context={'request': request})
 
         return Response(json_data.data)
