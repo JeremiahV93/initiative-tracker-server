@@ -42,7 +42,7 @@ class Encounters(ViewSet):
             encounter = Encounter.objects.get(pk=pk)
             encounter.delete()
 
-            return Response({}, status=status.HTTP_404_NOT_FOUND)
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
         except Encounter.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
