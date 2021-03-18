@@ -8,10 +8,10 @@ from .ability_score_modifier import modifier_clac
 class Monster(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE, )
     name = models.CharField(max_length=50)
-    challengeRating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)],)
+    challengeRating = models.FloatField()
     AC = models.IntegerField()
     maxHP = models.IntegerField()
-    initiativeBonus = models.IntegerField()
+    initiativeBonus = models.IntegerField(default=0)
     monsterType = models.CharField(max_length=50)
     damageResistance = models.TextField(default="none")
     damageImmunity = models.TextField(default="none")
@@ -39,15 +39,7 @@ class Monster(models.Model):
         verbose_name = ("monster")
         verbose_name_plural = ("monsters")
 
-    SIZE_CHOICES = ( 
-        ("tiny", "tiny"),
-        ("small", "small"),
-        ("medium", "medium"),
-        ("large", "large"),
-        ("huge", "huge"),
-        ("gargantuan", "gargantuan"),
-    )
-    size = models.CharField(max_length=10, choices=SIZE_CHOICES, default='M')
+    size = models.CharField(max_length=10, default='Medium')
 
     @property
     def strength_mod(self):
