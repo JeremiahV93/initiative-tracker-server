@@ -59,5 +59,11 @@ class Encounters(ViewSet):
             encounter.save()
             serializer = EncounterSerealizer(encounter, context= {'request': request})
             return Response(serializer.data)
-        except ValidationError as ex:
-            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
+        except ValidationError:
+            encounter.roomcode = ''.join(random.choices(string.ascii_uppercase, k=4))
+            try:
+                encounter.save()
+                serializer = EncounterSerealizer(encounter, context= {'request': request})
+                return Response(serializer.data)
+            except ValidationError as ex:
+                return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
