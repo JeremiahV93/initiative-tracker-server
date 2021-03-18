@@ -1,1 +1,3 @@
-execfile('5Escrapper.py')
+#!/bin/bash
+
+python ./initiativeTrackerApi/5Escrapper.py
