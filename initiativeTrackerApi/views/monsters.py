@@ -6,6 +6,7 @@ from rest_framework import serializers
 from initiativeTrackerApi.models import Monster
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import action
+import json
 
 class MonsterSerialzer(serializers.ModelSerializer):
 
@@ -22,9 +23,19 @@ class MonsterSerialzer(serializers.ModelSerializer):
          'wisdom_mod', 'charisma_mod')
 
 
+class MonsterTypesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Monster
+        fields = ('id', 'monsterType')
+
+class MonsterCRSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Monster
+        fields = ('id', 'challengeRating')
+
+
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 27
-
 
 class MonsterPage(ViewSet):
     def list(self,request):
@@ -46,6 +57,28 @@ class MonsterView(ViewSet):
         serializer = MonsterSerialzer(page, many=True)
 
         return paginator.get_paginated_response(serializer.data)
+
+    @action(methods=['get'], detail=False)
+    def monster_types(self,request):
+        """
+        url/monsters/monster_types
+        """
+        monsters = Monster.objects.values('monsterType').distinct()
+        
+        data = MonsterTypesSerializer(monsters, many=True)
+
+        return Response(data.data)
+    
+    @action(methods=['get'], detail=False)
+    def monster_CRs(self,request):
+        """
+        url/monsters/monster_CRs
+        """
+        monsters = Monster.objects.order_by('challengeRating').values('challengeRating').distinct()
+        
+        data = MonsterCRSerializer(monsters, many=True)
+
+        return Response(data.data)
 
     def list(self, request):
         monsters = Monster.objects.all()
