@@ -60,6 +60,9 @@ class MonsterView(ViewSet):
 
     @action(methods=['get'], detail=False)
     def monster_types(self,request):
+        """
+        url/monsters/monster_types
+        """
         monsters = Monster.objects.values('monsterType').distinct()
         
         data = MonsterTypesSerializer(monsters, many=True)
@@ -68,6 +71,9 @@ class MonsterView(ViewSet):
     
     @action(methods=['get'], detail=False)
     def monster_CRs(self,request):
+        """
+        url/monsters/monster_CRs
+        """
         monsters = Monster.objects.order_by('challengeRating').values('challengeRating').distinct()
         
         data = MonsterCRSerializer(monsters, many=True)
