@@ -4,10 +4,13 @@ from django.db.models.deletion import CASCADE
 from django.core.validators import MaxValueValidator, MinValueValidator
 from .ability_score_modifier import modifier_clac
 from .prof_bonus import prof_bonus
+from .campaign import Campaign
+
 
 
 class PlayerCharacter(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=CASCADE)
     name = models.CharField(max_length=50)
     level = models.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(20)],)
     AC = models.IntegerField()

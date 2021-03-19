@@ -1,12 +1,12 @@
 [
     {
         "model": "auth.user",
-        "pk": 2,
+        "pk": 1,
         "fields": {
-            "password": "pbkdf2_sha256$216000$KFNGbGWEJCiw$cBf9NsXw96zzubxnJEAYpCOipJztkplVzK9vYXGmKAo=",
+            "password": "pbkdf2_sha256$216000$Ame2hZ9PpzWw$Qcy7pFrepC22hlw7qtW2E+4zQZFgGdeeaZAjxip9rpk=",
             "last_login": null,
             "is_superuser": true,
-            "username": "Jmoney",
+            "username": "JJ the DM Planes",
             "first_name": "Jeremiah",
             "last_name": "Vasquez",
             "email": "j_d_v93@hotmail.com",

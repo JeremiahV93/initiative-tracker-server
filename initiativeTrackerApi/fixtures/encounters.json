@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "user": 1,
+            "campaign": 1,
             "name": "Battle of Emerald Hill",
             "roomcode": "ABCD"
         }

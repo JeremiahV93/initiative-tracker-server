@@ -5,6 +5,7 @@
         "fields": {
             "user": 1,
             "name": "Bruenor Battlehammer",
+            "campaign": 1,
             "level": 5,
             "AC": 18,
             "maxHP": 43,
@@ -25,6 +26,7 @@
         "fields": {
             "user": 1,
             "name": "Drizzt Do'Urden",
+            "campaign": 1,
             "level": 7,
             "AC": 16,
             "maxHP": 57,
@@ -45,6 +47,7 @@
         "fields": {
             "user": 1,
             "name": "Fernando Rodgriguz",
+            "campaign": 1,
             "level": 11,
             "AC": 15,
             "maxHP": 63,

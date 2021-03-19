@@ -7,7 +7,7 @@ from .encounter import Encounter
 class Playerencounterpair(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     characterId = models.ForeignKey(PlayerCharacter, on_delete=models.CASCADE)
-    encounterId = models.ForeignKey(Encounter, on_delete=models.CASCADE, default=1 )
+    encounterId = models.ForeignKey(Encounter, on_delete=models.CASCADE)
     initiative = models.IntegerField()
     concentration = models.BooleanField(default=False)
     temporaryHealth = models.IntegerField(default=0)

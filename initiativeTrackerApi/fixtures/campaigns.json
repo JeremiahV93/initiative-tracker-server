@@ -1,0 +1,10 @@
+[
+    {
+        "model": "initiativeTrackerApi.campaign",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Quintell"
+        }
+    }
+]
