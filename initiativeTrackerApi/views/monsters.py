@@ -4,6 +4,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from initiativeTrackerApi.models import Monster
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.decorators import action
 
 class MonsterSerialzer(serializers.ModelSerializer):
 
@@ -20,7 +22,30 @@ class MonsterSerialzer(serializers.ModelSerializer):
          'wisdom_mod', 'charisma_mod')
 
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 27
+
+
+class MonsterPage(ViewSet):
+    def list(self,request):
+        monsters = Monster.objects.all()
+        pagination_class = StandardResultsSetPagination
+        paginator = pagination_class()
+        page = paginator.paginate_queryset(monsters, request)
+        serializer = MonsterSerialzer(page, many=True)
+
+        return paginator.get_paginated_response(serializer.data)
+
 class MonsterView(ViewSet):
+    @action(methods=['get'], detail=False)
+    def monster_pages(self,request):
+        monsters = Monster.objects.all()
+        pagination_class = StandardResultsSetPagination
+        paginator = pagination_class()
+        page = paginator.paginate_queryset(monsters, request)
+        serializer = MonsterSerialzer(page, many=True)
+
+        return paginator.get_paginated_response(serializer.data)
 
     def list(self, request):
         monsters = Monster.objects.all()
@@ -28,8 +53,6 @@ class MonsterView(ViewSet):
         challenge_rating = self.request.query_params.get('challengeRating', None)
         monster_type = self.request.query_params.get('monsterType', None)
         active_user = self.request.query_params.get('activeUser', None)
-        pages = self.request.query_params.get('pages', None)
-
 
         if challenge_rating is not None:
             monsters = monsters.filter(challengeRating=challenge_rating)
@@ -37,12 +60,7 @@ class MonsterView(ViewSet):
             monsters = monsters.filter(monsterType=monster_type)
         if active_user is not None:
             monsters = monsters.filter(user=active_user)
-        if pages is not None:
-            pages = int(pages)
-            max_pages = pages + 25
-            monsters = monsters.filter(pk__gt=pages,pk__lte=max_pages)
         
-
         json_data = MonsterSerialzer(monsters, many=True, context={'request': request})
 
         return Response(json_data.data)
