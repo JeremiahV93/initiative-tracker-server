@@ -6,7 +6,6 @@ from rest_framework import serializers
 from initiativeTrackerApi.models import PlayerCharacter
 
 class PlayerSerealizer(serializers.ModelSerializer):
-    
 
     class Meta:
         model =  PlayerCharacter
@@ -17,11 +16,16 @@ class PlayerSerealizer(serializers.ModelSerializer):
         'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST'
         )
 
-
 class PlayerCharacterView(ViewSet):
 
     def list(self, request):
         players = PlayerCharacter.objects.filter(user=request.auth.user)
+
+        campaign = self.request.query_params.get('campaign', None)
+
+        if campaign is not None:
+            players = players.filter(campaign_id=campaign)
+
         json_data = PlayerSerealizer(players, many=True, context={'request': request})
 
         return Response(json_data.data)

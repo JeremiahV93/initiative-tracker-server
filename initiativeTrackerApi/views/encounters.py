@@ -6,14 +6,15 @@ from rest_framework import status
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from initiativeTrackerApi.models import Encounter
+from initiativeTrackerApi.models import Encounter, Campaign
 import string
 import random
 
 class EncounterSerealizer(serializers.ModelSerializer):
     class Meta:
         model = Encounter
-        fields = ('id', 'name', 'roomcode', 'archive')
+        fields = ('id', 'name', 'roomcode', 'archive', 'campaign')
+        depth = 1
 
 class Encounters(ViewSet):
 
@@ -22,9 +23,12 @@ class Encounters(ViewSet):
         encounters = Encounter.objects.all().filter(user=request.auth.user, archive=False)
 
         archive = self.request.query_params.get('archive', None)
+        campaign = self.request.query_params.get('campaign', None)
 
         if archive is not None:
             encounters = encounters.filter(archive=archive)
+        if campaign is not None:
+            encounters = encounters.filter(campaign_id=campaign)
 
         json_data = EncounterSerealizer(encounters, many=True, context={'request': request})
 
@@ -49,6 +53,8 @@ class Encounters(ViewSet):
     def update(self, request, pk=None):
         encounter = Encounter.objects.get(pk=pk)
         encounter.name = request.data["name"]
+        campaign = Campaign.objects.get(pk=request.data["campaignId"])
+        encounter.campaign = campaign
 
         encounter.save()
 
@@ -58,6 +64,8 @@ class Encounters(ViewSet):
     def create(self, request):
         encounter = Encounter()
         encounter.name = request.data["name"]
+        campaign = Campaign.objects.get(pk=request.data["campaignId"])
+        encounter.campaign = campaign
         encounter.roomcode = ''.join(random.choices(string.ascii_uppercase, k=4))
         encounter.user = request.auth.user
 

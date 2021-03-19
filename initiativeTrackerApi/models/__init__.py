@@ -5,3 +5,4 @@ from .monster import Monster
 from .prof_bonus import prof_bonus
 from .pcEncounterPairs import Playerencounterpair
 from .monsterEncounterPairs import Monsterencounterpair
+from .campaign import Campaign

@@ -4,13 +4,15 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from initiativeTrackerApi.views import login_user, register_user, apiScrapper
-from initiativeTrackerApi.views import Encounters, PlayerCharacterView, MonsterView, EncounterPairViews
+from initiativeTrackerApi.views import Encounters, PlayerCharacterView, MonsterView, EncounterPairViews, Campaigns
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'encounters', Encounters, 'encounter')
 router.register(r'players', PlayerCharacterView, 'player')
 router.register(r'monsters', MonsterView, 'monster')
 router.register(r'encounterpairs', EncounterPairViews, 'encounterpair')
+router.register(r'campaigns', Campaigns, 'campaign')
+
 
 
 

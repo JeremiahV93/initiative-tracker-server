@@ -9,6 +9,6 @@ class Monsterencounterpair(models.Model):
     monsterId = models.ForeignKey(Monster, on_delete=models.CASCADE)
     encounterId = models.ForeignKey(Encounter, on_delete=models.CASCADE, default=1  )
     initiative = models.IntegerField()
-    currentHealth = models.IntegerField(null=True)
+    currentHealth = models.IntegerField()
     concentration = models.BooleanField(default=False)
     temporaryHealth = models.IntegerField(default=0)

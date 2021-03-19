@@ -4,3 +4,4 @@ from .PCs import PlayerCharacterView
 from .monsters import MonsterView
 from .encounter_pairs import EncounterPairViews
 from .apiScrapper import apiScrapper
+from .campaigns import Campaigns
