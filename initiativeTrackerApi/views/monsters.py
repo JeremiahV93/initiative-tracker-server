@@ -28,6 +28,8 @@ class MonsterView(ViewSet):
         challenge_rating = self.request.query_params.get('challengeRating', None)
         monster_type = self.request.query_params.get('monsterType', None)
         active_user = self.request.query_params.get('activeUser', None)
+        pages = self.request.query_params.get('pages', None)
+
 
         if challenge_rating is not None:
             monsters = monsters.filter(challengeRating=challenge_rating)
@@ -35,6 +37,10 @@ class MonsterView(ViewSet):
             monsters = monsters.filter(monsterType=monster_type)
         if active_user is not None:
             monsters = monsters.filter(user=active_user)
+        if pages is not None:
+            pages = int(pages)
+            max_pages = pages + 25
+            monsters = monsters.filter(pk__gt=pages,pk__lte=max_pages)
         
 
         json_data = MonsterSerialzer(monsters, many=True, context={'request': request})
