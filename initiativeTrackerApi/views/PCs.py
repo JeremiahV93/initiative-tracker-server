@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from initiativeTrackerApi.models import PlayerCharacter
+from initiativeTrackerApi.models import PlayerCharacter, Campaign
 
 class PlayerSerealizer(serializers.ModelSerializer):
 
@@ -13,7 +13,7 @@ class PlayerSerealizer(serializers.ModelSerializer):
         'strengthStat', 'dexterityStat', 'constitutionStat', 'intelligenceStat', 'wisdomStat',
         'charismaStat', 'speed', 'characterClass', 'strength_mod', 'dexterity_mod',
         'constitution_mod', 'intelligence_mod', 'wisdom_mod', 'charisma_mod', 'strength_ST',
-        'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST'
+        'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST', 'campaign'
         )
 
 class PlayerCharacterView(ViewSet):
@@ -45,7 +45,7 @@ class PlayerCharacterView(ViewSet):
                 return Response({}, status=status.HTTP_401_UNAUTHORIZED)
             player.delete()
 
-            return Response({}, status=status.HTTP_404_NOT_FOUND)
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
         except PlayerCharacter.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
@@ -85,6 +85,9 @@ class PlayerCharacterView(ViewSet):
         player.charismaStat = request.data["charismaStat"]
         player.speed = request.data["speed"]
         player.characterClass = request.data["characterClass"]
+
+        campaign = Campaign.objects.get(pk=request.data["campaignId"])
+        player.campaign = campaign
 
         try:
             player.save()

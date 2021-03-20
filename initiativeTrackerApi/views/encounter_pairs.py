@@ -3,7 +3,8 @@ from rest_framework import status
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from initiativeTrackerApi.models import Monsterencounterpair, Playerencounterpair, Monster, PlayerCharacter
+from rest_framework.decorators import action
+from initiativeTrackerApi.models import Monsterencounterpair, Playerencounterpair, Monster, PlayerCharacter, Encounter
 from .monsters import MonsterSerialzer
 from .PCs import PlayerSerealizer
 
@@ -25,7 +26,17 @@ class PlayerPairSerializer(serializers.ModelSerializer):
 
 
 class EncounterPairViews(ViewSet):
-    def list(self, request, pk=None):
+    @action(methods=['delete'], detail=False)
+    def monster_delete(self,request):
+        try:
+            monster_pair = Monsterencounterpair.objects.get(pk=request.data["monsterId"])
+            monster_pair.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        except Monsterencounterpair.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+    def list(self, request):
 
 
         """
@@ -62,14 +73,16 @@ class EncounterPairViews(ViewSet):
         return Response(all_creatures)
 
     def create(self, request):
-        if request.data["monsterId"] is not None:
+        if request.data["monsterId"] != '':
             monster_pair = Monsterencounterpair()
             monster_pair.user = request.auth.user
-            monster_pair.monsterId = request.data["monsterId"]
-            monster_pair.encounterId = request.data["encounterId"]
-            monster_pair.initiative = request.data["initiative"]
+
+            encounter = Encounter.objects.get(pk=request.data["encounterId"])
+            monster_pair.encounterId = encounter
+            monster_pair.initiative = 0
 
             monster = Monster.objects.get(pk=request.data["monsterId"])
+            monster_pair.monsterId = monster
             monster_pair.currentHealth = monster.maxHP
 
             monster_pair.concentration = False
@@ -85,11 +98,12 @@ class EncounterPairViews(ViewSet):
         else:
             player_pair = Playerencounterpair()
             player_pair.user = request.auth.user
-            player_pair.characterId = request.data["characterId"]
-            player_pair.encounterId = request.data["encounterId"]
-            player_pair.initiative = request.data["initiative"]
+            encounter = Encounter.objects.get(pk=request.data["encounterId"])
+            player_pair.encounterId = encounter
+            player_pair.initiative = 0
 
             player = PlayerCharacter.objects.get(pk=request.data["characterId"])
+            player_pair.characterId = player
             player_pair.currentHealth = player.maxHP
 
             player_pair.concentration = False
@@ -102,8 +116,8 @@ class EncounterPairViews(ViewSet):
             except ValidationError as ex:
                 return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
-    def destroy(self, request):
-        if request.data["monsterId"] is not None:
+    def destroy(self, request, pk=None):
+        if request.data["monster"] is True:
             try:
                 monster_pair = Monsterencounterpair.objects.get(pk=request.data["monsterId"])
                 monster_pair.delete()
@@ -121,14 +135,12 @@ class EncounterPairViews(ViewSet):
             except Playerencounterpair.DoesNotExist as ex:
                 return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-    def update(self, request):
-        if request.data["monsterId"] is not None:
-            monster_pair = Monsterencounterpair.objects.get(pk=request.data["monsterId"])
-            monster_pair.encounterId = request.data["encounterId"]
+    def update(self, request, pk=None):
+        if request.data["monster"] is 'true':
+            monster_pair = Monsterencounterpair.objects.get(pk=request.data["pairId"])
             monster_pair.initiative = request.data["initiative"]
             monster_pair.currentHealth = request.data["currentHealth"]
             monster_pair.concentration = request.data["concentration"]
-            monster_pair.temporaryHealth = request.data["temporaryHealth"]
 
             try:
                 monster_pair.save()
@@ -138,12 +150,10 @@ class EncounterPairViews(ViewSet):
                 return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
         else:
-            player_pair = Playerencounterpair.objects.get(pk=request.data["characterId"])
-            player_pair.encounterId = request.data["encounterId"]
+            player_pair = Playerencounterpair.objects.get(pk=request.data["pairId"])
             player_pair.initiative = request.data["initiative"]
             player_pair.currentHealth = request.data["currentHealth"]
             player_pair.concentration = request.data["concentration"]
-            player_pair.temporaryHealth = request.data["temporaryHealth"]
 
             try:
                 player_pair.save()
