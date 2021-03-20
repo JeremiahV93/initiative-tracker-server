@@ -34,6 +34,7 @@ class Encounters(ViewSet):
 
         return Response(json_data.data)
 
+
     def retrieve(self, request, pk=None):
 
         encounter = Encounter.objects.get(pk=pk)
@@ -59,7 +60,6 @@ class Encounters(ViewSet):
         encounter.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
-
 
     def create(self, request):
         encounter = Encounter()
