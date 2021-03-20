@@ -5,7 +5,7 @@ from .playerCharacter import PlayerCharacter
 from .encounter import Encounter
 
 class Playerencounterpair(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     characterId = models.ForeignKey(PlayerCharacter, on_delete=models.CASCADE)
     encounterId = models.ForeignKey(Encounter, on_delete=models.CASCADE)
     initiative = models.IntegerField()

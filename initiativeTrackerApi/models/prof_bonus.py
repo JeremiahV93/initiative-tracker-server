@@ -1,6 +1,8 @@
 def prof_bonus(level):
     # need to somehow add together character class prof bonus to certain saving throws
     prof_bonus = None
+
+    level = int(level)
  
     if level >= 4:
         prof_bonus = 2
