@@ -134,30 +134,3 @@ class EncounterPairViews(ViewSet):
                 return Response({}, status=status.HTTP_204_NO_CONTENT)
             except Playerencounterpair.DoesNotExist as ex:
                 return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
-    def update(self, request, pk=None):
-        if request.data["monster"] is 'true':
-            monster_pair = Monsterencounterpair.objects.get(pk=request.data["pairId"])
-            monster_pair.initiative = request.data["initiative"]
-            monster_pair.currentHealth = request.data["currentHealth"]
-            monster_pair.concentration = request.data["concentration"]
-
-            try:
-                monster_pair.save()
-                serializer = MonsterPairSerializer(monster_pair,  context= {'request': request})
-                return Response(serializer.data)
-            except ValidationError as ex:
-                return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
-
-        else:
-            player_pair = Playerencounterpair.objects.get(pk=request.data["pairId"])
-            player_pair.initiative = request.data["initiative"]
-            player_pair.currentHealth = request.data["currentHealth"]
-            player_pair.concentration = request.data["concentration"]
-
-            try:
-                player_pair.save()
-                serializer = PlayerPairSerializer(player_pair,  context= {'request': request})
-                return Response(serializer.data)
-            except ValidationError as ex:
-                return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)

@@ -5,3 +5,5 @@ from .monsters import MonsterView
 from .encounter_pairs import EncounterPairViews
 from .apiScrapper import apiScrapper
 from .campaigns import Campaigns
+from .monsterPair import MonsterPairViews
+from .playerPair import PlayerPairViews
