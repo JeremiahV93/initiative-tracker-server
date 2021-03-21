@@ -45,8 +45,16 @@ class EncounterPairViews(ViewSet):
         all_monsters = Monsterencounterpair.objects.all()
         all_players = Playerencounterpair.objects.all()
 
+        encounter_id = self.request.query_params.get('encounterId', None) 
 
-        encounter_id = self.request.query_params.get('encounterId', None)
+        """
+        invalid token, seperate data call/URL that is somehow public?
+        """
+        if self.request.query_params.get('roomCode', None):
+            roodCodeKey = self.request.query_params.get('roomCode', None)
+            roomCode = Encounter.objects.get(pk=roomCodeKey)
+            encounter_id = roomCode.pk
+
 
         """
         api/encounterpairs?encounterId?X
