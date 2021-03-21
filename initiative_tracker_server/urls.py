@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register', register_user),
     path('login', login_user),
-    # path('scrap', apiScrapper),
+    path('scrap', apiScrapper),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 
 ]
