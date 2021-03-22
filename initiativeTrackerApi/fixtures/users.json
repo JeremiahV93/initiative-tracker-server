@@ -1,0 +1,20 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$Ame2hZ9PpzWw$Qcy7pFrepC22hlw7qtW2E+4zQZFgGdeeaZAjxip9rpk=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "JJ the DM Planes",
+            "first_name": "Jeremiah",
+            "last_name": "Vasquez",
+            "email": "j_d_v93@hotmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-03-04 02:05:13.211197",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
