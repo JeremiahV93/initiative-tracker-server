@@ -13,7 +13,7 @@ class PlayerSerealizer(serializers.ModelSerializer):
         'strengthStat', 'dexterityStat', 'constitutionStat', 'intelligenceStat', 'wisdomStat',
         'charismaStat', 'speed', 'characterClass', 'strength_mod', 'dexterity_mod',
         'constitution_mod', 'intelligence_mod', 'wisdom_mod', 'charisma_mod', 'strength_ST',
-        'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST', 'campaign'
+        'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST', 'campaign', 'spellSave_DC'
         )
 
 class PlayerCharacterView(ViewSet):

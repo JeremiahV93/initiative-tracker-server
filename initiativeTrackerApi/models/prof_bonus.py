@@ -4,15 +4,15 @@ def prof_bonus(level):
 
     level = int(level)
  
-    if level >= 4:
+    if level <= 4:
         prof_bonus = 2
-    elif level >= 8:
+    elif level <= 8:
         prof_bonus = 3
-    elif level >= 12:
+    elif level <= 12:
         prof_bonus = 4
-    elif level >= 16:
+    elif level <= 16:
         prof_bonus = 5
-    elif level >=20:
+    elif level <=20:
         prof_bonus = 6
 
     return (prof_bonus)

@@ -130,3 +130,15 @@ class PlayerCharacter(models.Model):
         else:
             charisma_st = self.charisma_mod
         return charisma_st
+
+    @property
+    def spellSave_DC(self):
+        spellSave_DC = 0
+        if self.characterClass in ['Warlock', 'Sorcerer', 'Paladin', 'Bard']:
+            spellSave_DC = 8 + self.charisma_mod + prof_bonus(self.level)
+        elif self.characterClass in ['Wizard', 'Ranger']:
+            spellSave_DC = 8 + self.intelligence_mod + prof_bonus(self.level)
+        elif self.characterClass in ['Druid', 'Cleric']:
+            spellSave_DC = 8 + self.wisdom_mod + prof_bonus(self.level)
+        
+        return spellSave_DC 
