@@ -1,1 +1,1 @@
-web: gunicorn levelup.wsgi --log-file -
+web: gunicorn initiative_tracker_server.wsgi --log-file -

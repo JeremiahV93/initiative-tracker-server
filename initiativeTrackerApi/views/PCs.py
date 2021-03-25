@@ -15,6 +15,7 @@ class PlayerSerealizer(serializers.ModelSerializer):
         'constitution_mod', 'intelligence_mod', 'wisdom_mod', 'charisma_mod', 'strength_ST',
         'dexterity_ST', 'constitution_ST', 'intelligence_ST', 'wisdom_ST', 'charisma_ST', 'campaign', 'spellSave_DC'
         )
+        depth = 1
 
 class PlayerCharacterView(ViewSet):
 
