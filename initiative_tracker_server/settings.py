@@ -30,6 +30,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+rejectUnauthorized: False
+
 
 # Application definition
 
