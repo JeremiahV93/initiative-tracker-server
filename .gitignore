@@ -153,4 +153,4 @@ dmypy.json
 
 
 .vscode
-.exe
+.env
