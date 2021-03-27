@@ -115,22 +115,3 @@ class EncounterPairViews(ViewSet):
                 return Response(serializer.data)
             except ValidationError as ex:
                 return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
-
-    def destroy(self, request, pk=None):
-        if request.data["monster"] is True:
-            try:
-                monster_pair = Monsterencounterpair.objects.get(pk=request.data["monsterId"])
-                monster_pair.delete()
-
-                return Response({}, status=status.HTTP_204_NO_CONTENT)
-            except Monsterencounterpair.DoesNotExist as ex:
-                return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
-        else:
-            try:
-                player_pair = Playerencounterpair.objects.get(pk=request.data["characterId"])
-                player_pair.delete()
-
-                return Response({}, status=status.HTTP_204_NO_CONTENT)
-            except Playerencounterpair.DoesNotExist as ex:
-                return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
