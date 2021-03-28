@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "39132c95938b4c9e4e87588236f370bb40a0b76c2ccfd799ba6e2bd919d8dc01"
+            "sha256": "7c327a2abdd9140c0cea5fe451c8061b483391a6e43a4b502c7294f8548514b8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,11 +26,11 @@
         },
         "astroid": {
             "hashes": [
-                "sha256:21d735aab248253531bb0f1e1e6d068f0ee23533e18ae8a6171ff892b98297cf",
-                "sha256:cfc35498ee64017be059ceffab0a25bedf7548ab76f2bea691c5565896e7128d"
+                "sha256:6b0ed1af831570e500e2437625979eaa3b36011f66ddfc4ce930128610258ca9",
+                "sha256:cd80bf957c49765dce6d92c43163ff9d2abc43132ce64d4b1b47717c6d2522df"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==2.5.1"
+            "version": "==2.5.2"
         },
         "autopep8": {
             "hashes": [
@@ -54,6 +54,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==4.0.0"
+        },
+        "dj-database-url": {
+            "hashes": [
+                "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
+                "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
+            ],
+            "index": "pypi",
+            "version": "==0.5.0"
         },
         "django": {
             "hashes": [
