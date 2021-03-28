@@ -50,7 +50,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'https://jv-initiative.web.app/'
+    'https://jv-initiative.web.app'
 ]
 
 MIDDLEWARE = [
