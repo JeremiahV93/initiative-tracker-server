@@ -50,9 +50,9 @@ REST_FRAMEWORK = {
 
 }
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = [
     'https://jv-initiative.web.app/'
-)
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
