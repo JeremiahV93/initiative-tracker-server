@@ -14,6 +14,7 @@ django-cors-headers = "*"
 pylint-django = "*"
 gunicorn = "*"
 requests = "*"
+dj_database_url = "*"
 
 [requires]
 python_version = "3.8"
