@@ -25,5 +25,4 @@ urlpatterns = [
     path('login', login_user),
     path('scrap', apiScrapper),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
-
 ]
